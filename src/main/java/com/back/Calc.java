@@ -6,25 +6,34 @@ public class Calc {
         //공백 제거
         exp = exp.replaceAll(" ","");
 
-        if (exp.contains("+")){
-            String[] expBits = exp.split("\\+");
+        StringBuilder numberBulider = new StringBuilder();
 
-            int num1 = Integer.parseInt(expBits[0]);
-            int num2 = Integer.parseInt(expBits[1]);
+        int result = 0;
+        int currentNum = 0;
+        char currentOp = '+';
 
-            if (exp.equals("10+20+30")) return 60;
+        //문자열 처음부터 하나씩 꺼내기
+        for (int i = 0; i < exp.length() ; i++){
+            char ch = exp.charAt(i);
 
-            return num1 + num2;
+            if (Character.isDigit(ch)){
+                numberBulider.append(ch);
+
+                if (i == exp.length()-1 || "+-".indexOf(exp.charAt(i+1)) >= 0){
+                    currentNum = Integer.parseInt(numberBulider.toString());
+                    numberBulider.setLength(0);
+
+                    if (currentOp == '+') result += currentNum;
+                    else if (currentOp == '-') result -= currentNum;
+                }
+
+            } else if ("+-".indexOf(ch) >= 0) {
+                currentOp = ch;
+
+            }
         }
-        if (exp.contains("-")){
-            String[] expBits = exp.split("-", 2);
 
-            int num1 = Integer.parseInt(expBits[0]);
-            int num2 = Integer.parseInt(expBits[1]);
-
-            return num1 - num2;
-        }
-        return 0;
+        return result;
 
     }
 }
