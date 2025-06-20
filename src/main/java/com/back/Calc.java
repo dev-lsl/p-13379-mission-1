@@ -3,9 +3,14 @@ package com.back;
 public class Calc {
 
     public static int run(String exp) {
-        if (exp.equals("1 + 1")) return 2;
-        if (exp.equals("2 + 1")) return 3;
+        //공백 제거
+        exp = exp.replaceAll(" ","");
 
-        return 0;
+        String[] expBits = exp.split("\\+", 2);
+
+        int num1 = Integer.parseInt(expBits[0]);
+        int num2 = Integer.parseInt(expBits[1]);
+
+        return num1 + num2;
     }
 }
