@@ -19,15 +19,16 @@ public class Calc {
             if (Character.isDigit(ch)){
                 numberBulider.append(ch);
 
-                if (i == exp.length()-1 || "+-".indexOf(exp.charAt(i+1)) >= 0){
+                if (i == exp.length()-1 || "+-*".indexOf(exp.charAt(i+1)) >= 0){
                     currentNum = Integer.parseInt(numberBulider.toString());
                     numberBulider.setLength(0);
 
                     if (currentOp == '+') result += currentNum;
                     else if (currentOp == '-') result -= currentNum;
+                    else if (currentOp == '*') result *= currentNum;
                 }
 
-            } else if ("+-".indexOf(ch) >= 0) {
+            } else if ("+-*".indexOf(ch) >= 0) {
                 currentOp = ch;
 
             }
