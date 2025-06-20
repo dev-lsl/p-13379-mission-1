@@ -16,7 +16,7 @@ public class Calc {
         for (int i = 0; i < exp.length() ; i++){
             char ch = exp.charAt(i);
 
-            if (Character.isDigit(ch)){
+            if (Character.isDigit(ch) || ch =='-'){
                 numberBulider.append(ch);
 
                 if (i == exp.length()-1 || "+-*".indexOf(exp.charAt(i+1)) >= 0){
